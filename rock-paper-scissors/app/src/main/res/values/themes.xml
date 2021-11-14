@@ -2,6 +2,15 @@
     <!-- Base application theme. -->
     <style name="Theme.RockPaperScissors" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
+
+        <item name="text_view_color">@color/text_view</item>
+        <item name="radio_button_color">@color/radio_button</item>
+        <item name="play_button_color">@color/play_button</item>
+        <item name="text_view_size">@dimen/text_view</item>
+        <item name="radio_button_size">@dimen/radio_button</item>
+        <item name="play_button_size">@dimen/play_button</item>
+
+
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>

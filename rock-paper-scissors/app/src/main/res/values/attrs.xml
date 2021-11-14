@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="text_view_color">format="color"</attr>
+    <attr name="radio_button_color">format="color"</attr>
+    <attr name="play_button_color">format="color"</attr>
+    <attr name="text_view_size">format="dimension"</attr>
+    <attr name="radio_button_size">format="dimension"</attr>
+    <attr name="play_button_size">format="dimension"</attr>
+</resources>
