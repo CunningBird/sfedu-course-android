@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="4dp">
+
+    <TextView
+        android:id="@+id/lessonNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dip"
+        android:layout_weight="6"
+        android:singleLine="true"
+        android:text=""
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/list_item_text_size"/>
+
+    <EditText
+        android:id="@+id/EditTextLesson"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dip"
+        android:layout_weight="1"
+        android:textColor="@color/text_color"
+        android:singleLine="true" />
+</LinearLayout>

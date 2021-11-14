@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="text_color">#ED7700</color>
+    <color name="table_back_color">#363434</color>
+    <color name="button_color">#ED7700</color>
+    <color name="text_button_color">#363434</color>
+</resources>
