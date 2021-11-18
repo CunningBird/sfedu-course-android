@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
 
         initialize()
         buttonCreateScheduleOnClickListener()
-        setUpGrid()
+        setUpAdapter()
     }
 
     private fun initialize() {
@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
         }
     }
 
-    private fun setUpGrid() {
+    private fun setUpAdapter() {
         val schedule: GridView = findViewById(R.id.scheduleGrid)
         val myAdapter = Adapter(applicationContext)
         schedule.adapter = myAdapter

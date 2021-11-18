@@ -34,7 +34,7 @@ class WhatYouNeed : AppCompatActivity() {
         setContentView(R.layout.activity_what_you_need)
 
         initialize()
-        setUpList()
+        setUpAdapter()
     }
 
     private fun initialize() {
@@ -66,7 +66,7 @@ class WhatYouNeed : AppCompatActivity() {
         }
     }
 
-    private fun setUpList() {
+    private fun setUpAdapter() {
         listView = findViewById(R.id.listView)
         listView.itemsCanFocus = true
         myAdapter = Adapter(generalSupplies, getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater)

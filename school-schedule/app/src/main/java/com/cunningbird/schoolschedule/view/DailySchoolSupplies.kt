@@ -24,17 +24,11 @@ class DailySchoolSupplies : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_school_supplies)
 
         val bundle: Bundle? = intent.extras
         val daysDirectory = bundle!!.getString("daysDirectory")
         val setOfLessons: ArrayList<String>? = bundle.getStringArrayList("setOfLessons")
-
-        val buttonRemove: Button = findViewById(R.id.buttonRemove)
-        val buttonAdd: Button = findViewById(R.id.buttonAdd)
-        val buttonPrev: Button = findViewById(R.id.buttonPrev)
-        val buttonNext: Button = findViewById(R.id.buttonNext)
 
         val schoolSupply: TextView = findViewById(R.id.school_supply)
         schoolSupply.text = setOfLessons!![indexLesson]
@@ -44,11 +38,31 @@ class DailySchoolSupplies : AppCompatActivity() {
             schoolSupplies[i].add("")
         }
 
+        setUpAdapter()
+        setUpSchoolSupply(schoolSupply, setOfLessons)
+        buttonRemoveOnClickListener()
+        buttonAddOnClickListener()
+        buttonPrevOnClickListener(schoolSupply, setOfLessons)
+        buttonNextOnClickListener(schoolSupply, setOfLessons, daysDirectory)
+    }
+
+    private fun setUpAdapter() {
         listView = findViewById(R.id.listView)
         listView.itemsCanFocus = true
         myAdapter = Adapter(schoolSupplies[indexLesson], getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater)
         listView.adapter = myAdapter
+    }
 
+    private fun setUpSchoolSupply(schoolSupply: TextView, setOfLessons: ArrayList<String>) {
+        schoolSupply.text = setOfLessons[indexLesson]
+        for (i in 0 until setOfLessons.size) {
+            schoolSupplies.add(arrayListOf())
+            schoolSupplies[i].add("")
+        }
+    }
+
+    private fun buttonRemoveOnClickListener() {
+        val buttonRemove: Button = findViewById(R.id.buttonRemove)
         buttonRemove.isEnabled = false
         buttonRemove.setOnClickListener {
             schoolSupplies[indexLesson].removeLast()
@@ -59,7 +73,11 @@ class DailySchoolSupplies : AppCompatActivity() {
             myAdapter = Adapter(schoolSupplies[indexLesson], getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater)
             listView.adapter = myAdapter
         }
+    }
 
+    private fun buttonAddOnClickListener() {
+        val buttonRemove: Button = findViewById(R.id.buttonRemove)
+        val buttonAdd: Button = findViewById(R.id.buttonAdd)
         buttonAdd.setOnClickListener {
             schoolSupplies[indexLesson].add("")
             buttonRemove.isEnabled = true
@@ -67,6 +85,12 @@ class DailySchoolSupplies : AppCompatActivity() {
             myAdapter = Adapter(schoolSupplies[indexLesson], getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater)
             listView.adapter = myAdapter
         }
+    }
+
+    private fun buttonPrevOnClickListener(schoolSupply: TextView, setOfLessons: ArrayList<String>) {
+        val buttonRemove: Button = findViewById(R.id.buttonRemove)
+        val buttonPrev: Button = findViewById(R.id.buttonPrev)
+        val buttonNext: Button = findViewById(R.id.buttonNext)
 
         buttonPrev.isEnabled = false
         buttonPrev.setOnClickListener {
@@ -84,6 +108,13 @@ class DailySchoolSupplies : AppCompatActivity() {
 
             schoolSupply.text = setOfLessons[indexLesson]
         }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun buttonNextOnClickListener(schoolSupply: TextView, setOfLessons: ArrayList<String>, daysDirectory: String?) {
+        val buttonRemove: Button = findViewById(R.id.buttonRemove)
+        val buttonPrev: Button = findViewById(R.id.buttonPrev)
+        val buttonNext: Button = findViewById(R.id.buttonNext)
 
         buttonNext.setOnClickListener {
             if (indexLesson == setOfLessons.size - 1) {
@@ -125,27 +156,6 @@ class DailySchoolSupplies : AppCompatActivity() {
 
             schoolSupply.text = setOfLessons[indexLesson]
         }
-
-        initialize()
-        buttonRemoveOnClickListener()
-        buttonAddOnClickListener()
-        buttonNextOnClickListener()
-    }
-
-    private fun initialize() {
-
-    }
-
-    private fun buttonRemoveOnClickListener() {
-
-    }
-
-    private fun buttonAddOnClickListener() {
-
-    }
-
-    private fun buttonNextOnClickListener() {
-
     }
 
     private inner class Adapter(val arrList: ArrayList<String>, private var layoutInflater: LayoutInflater) : BaseAdapter() {
