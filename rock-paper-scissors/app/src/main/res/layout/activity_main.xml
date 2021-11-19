@@ -1,98 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/white"
     android:layout_height="match_parent"
-    android:padding="20dp"
     tools:context=".MainActivity">
 
-
-    <TextView
-        android:id="@+id/tv_choose"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:background="@color/white"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Computer move"
-        android:textColor="?attr/text_view_color"
-        android:textSize="?attr/text_view_size"
-        app:layout_constraintEnd_toEndOf="@id/image"
-        app:layout_constraintStart_toStartOf="@id/image"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:padding="20dp"
+        tools:context=".MainActivity">
 
-
-    <ImageView
-        android:id="@+id/image"
-        android:layout_marginTop="20dp"
-        android:layout_width="0dp"
-        android:layout_height="280dp"
-        android:adjustViewBounds="true"
-        android:src="@drawable/welcome"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_choose"
-        android:contentDescription="Computer move" />
-
-
-    <TextView
-        android:id="@+id/answer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="User move"
-        android:textColor="?attr/text_view_color"
-        android:textSize="?attr/text_view_size"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintEnd_toEndOf="@id/image"
-        app:layout_constraintStart_toStartOf="@id/image"
-        app:layout_constraintTop_toBottomOf="@+id/image" />
-
-
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="match_parent"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toStartOf="@id/answer"
-        app:layout_constraintTop_toBottomOf="@+id/answer"
-        android:layout_height="wrap_content">
-
-        <RadioButton
-            android:id="@+id/radio_k"
+        <TextView
+            android:id="@+id/tv_choose"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Rock"
-            android:textColor="?attr/radio_button_color"
-            android:textSize="8pt" />
+            android:layout_marginTop="16dp"
+            android:text="Computer move"
+            android:textColor="?attr/text_view_color"
+            android:textSize="?attr/text_view_size"
+            app:layout_constraintEnd_toEndOf="@id/image"
+            app:layout_constraintStart_toStartOf="@id/image"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <RadioButton
-            android:id="@+id/radio_n"
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_marginTop="20dp"
+            android:layout_width="0dp"
+            android:layout_height="280dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/welcome"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_choose"
+            android:contentDescription="Computer move" />
+
+
+        <TextView
+            android:id="@+id/answer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Scissors"
-            android:textColor="?attr/radio_button_color"
-            android:textSize="8pt" />
+            android:layout_marginTop="30dp"
+            android:text="User move"
+            android:textColor="?attr/text_view_color"
+            android:textSize="?attr/text_view_size"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintEnd_toEndOf="@id/image"
+            app:layout_constraintStart_toStartOf="@id/image"
+            app:layout_constraintTop_toBottomOf="@+id/image" />
 
-        <RadioButton
-            android:id="@+id/radio_b"
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="@id/answer"
+            app:layout_constraintTop_toBottomOf="@+id/answer"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio_k"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rock"
+                android:textColor="?attr/radio_button_color"
+                android:textSize="8pt" />
+
+            <RadioButton
+                android:id="@+id/radio_n"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Scissors"
+                android:textColor="?attr/radio_button_color"
+                android:textSize="8pt" />
+
+            <RadioButton
+                android:id="@+id/radio_b"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Paper"
+                android:textColor="?attr/radio_button_color"
+                android:textSize="8pt" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Paper"
-            android:textColor="?attr/radio_button_color"
-            android:textSize="8pt" />
-    </RadioGroup>
+            android:layout_marginTop="20dp"
+            android:text="Play"
+            android:textColor="?attr/play_button_color"
+            android:textSize="8pt"
+            app:layout_constraintStart_toStartOf="@id/image"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Play"
-        android:textColor="?attr/play_button_color"
-        android:textSize="8pt"
-        app:layout_constraintStart_toStartOf="@id/image"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
