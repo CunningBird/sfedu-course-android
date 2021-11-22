@@ -1,4 +1,4 @@
-package com.cunningbird.cats.ui.dashboard
+package com.cunningbird.cats.ui.downloads
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,13 +8,12 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.cunningbird.cats.R
-import com.cunningbird.cats.databinding.FragmentDashboardBinding
+import com.cunningbird.cats.databinding.FragmentDownloadsBinding
 
-class DashboardFragment : Fragment() {
+class DownloadsFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
-    private var _binding: FragmentDashboardBinding? = null
+    private lateinit var downloadsViewModel: DownloadsViewModel
+    private var _binding: FragmentDownloadsBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -24,17 +23,17 @@ class DashboardFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        dashboardViewModel =
-            ViewModelProvider(this).get(DashboardViewModel::class.java)
+    ): View {
+        downloadsViewModel =
+            ViewModelProvider(this)[DownloadsViewModel::class.java]
 
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        _binding = FragmentDownloadsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
+        val textView: TextView = binding.textDownloads
+        downloadsViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
-        })
+        }
         return root
     }
 

@@ -1,4 +1,4 @@
-package com.cunningbird.cats.ui.home
+package com.cunningbird.cats.ui.cats
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,15 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.cunningbird.cats.R
-import com.cunningbird.cats.databinding.FragmentHomeBinding
+import com.cunningbird.cats.databinding.FragmentCatsBinding
 
-class HomeFragment : Fragment() {
+class CatsFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
-    private var _binding: FragmentHomeBinding? = null
+    private lateinit var catsViewModel: CatsViewModel
+    private var _binding: FragmentCatsBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -24,17 +22,17 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+    ): View {
+        catsViewModel =
+            ViewModelProvider(this)[CatsViewModel::class.java]
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentCatsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
+        val textView: TextView = binding.textCats
+        catsViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
-        })
+        }
         return root
     }
 

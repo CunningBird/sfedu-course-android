@@ -1,4 +1,4 @@
-package com.cunningbird.cats.ui.notifications
+package com.cunningbird.cats.ui.favorites
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,13 +8,12 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.cunningbird.cats.R
-import com.cunningbird.cats.databinding.FragmentNotificationsBinding
+import com.cunningbird.cats.databinding.FragmentFavoritesBinding
 
-class NotificationsFragment : Fragment() {
+class FavoritesFragment : Fragment() {
 
-    private lateinit var notificationsViewModel: NotificationsViewModel
-    private var _binding: FragmentNotificationsBinding? = null
+    private lateinit var favoritesViewModel: FavoritesViewModel
+    private var _binding: FragmentFavoritesBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -24,17 +23,17 @@ class NotificationsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        notificationsViewModel =
-            ViewModelProvider(this).get(NotificationsViewModel::class.java)
+    ): View {
+        favoritesViewModel =
+            ViewModelProvider(this)[FavoritesViewModel::class.java]
 
-        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
+        _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner, Observer {
+        val textView: TextView = binding.textFavorites
+        favoritesViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
-        })
+        }
         return root
     }
 
