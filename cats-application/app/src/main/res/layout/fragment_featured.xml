@@ -18,10 +18,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="Downloads"/>
+        android:text="Featured"/>
 
     <!--<androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvCatRoom"
+        android:id="@+id/rvCatLoader"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:padding="16dp"

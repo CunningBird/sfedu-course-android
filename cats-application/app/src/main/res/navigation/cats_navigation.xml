@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cats_navigation"
+    app:startDestination="@id/catListFragment">
+
+    <fragment
+        android:id="@+id/catListFragment"
+        android:name="com.cunningbird.cats.view.cats.CatsFragment"
+        android:label="All Cats"
+        tools:layout="@layout/fragment_cats">
+        <action
+            android:id="@+id/action_catsFragment_to_cardFragment"
+            app:destination="@id/cardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cardFragment"
+        android:name="com.cunningbird.cats.view.card.CardFragment"
+        android:label="Cat Details"
+        tools:layout="@layout/fragment_card">
+    </fragment>
+
+</navigation>

@@ -1,6 +1,12 @@
 <resources>
-    <string name="app_name">CatsApplication</string>
-    <string name="title_cats">Cats</string>
-    <string name="title_favorites">Favorites</string>
-    <string name="title_downloads">Downloads</string>
+    <string name="app_name">Cats Application</string>
+    <string name="menu_cats">Cats</string>
+    <string name="menu_featured">Featured</string>
+    <string name="menu_downloads">Downloads</string>
+    <string name="label_title_remote">Paging with remote cat api service as data source</string>
+    <string name="label_title_room">Paging with room as data source </string>
+    <string name="label_title_loader">Paging with footer for showing loader</string>
+    <string name="desc_cat">cat</string>
+    <string name="button_retry">Retry</string>
+    <string name="label_error">Something went wrong, please try again</string>
 </resources>

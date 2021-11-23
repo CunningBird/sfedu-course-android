@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/cats">
+
+    <fragment
+        android:id="@+id/downloads"
+        android:name="com.cunningbird.cats.view.downloads.DownloadsFragment"
+        tools:layout="@layout/fragment_downloads" />
+    <fragment
+        android:id="@+id/featured"
+        android:name="com.cunningbird.cats.view.featured.FeaturedFragment"
+        tools:layout="@layout/fragment_featured" />
+    <fragment
+        android:id="@+id/cats"
+        android:name="com.cunningbird.cats.view.cats.CatsFragment"
+        tools:layout="@layout/fragment_cats" />
+
+    <include app:graph="@navigation/cats_navigation" />
+
+</navigation>

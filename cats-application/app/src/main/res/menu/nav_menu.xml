@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/cats"
+        android:icon="@drawable/ic_cats"
+        android:title="@string/menu_cats" />
+    <item
+        android:id="@+id/featured"
+        android:icon="@drawable/ic_featured"
+        android:title="@string/menu_featured" />
+    <item
+        android:id="@+id/downloads"
+        android:icon="@drawable/ic_downloads"
+        android:title="@string/menu_downloads" />
+
+</menu>
