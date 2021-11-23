@@ -8,4 +8,15 @@
         android:textAlignment="center" android:textSize="20sp" app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- TODO Фильтр для RecyclerView -->
+
+    <!-- TODO RecyclerView список с карточками котиков (2 картинки в ряду, в т.ч. гифки). -->
+    <!-- Карточка содержит кнопку "добавить в избранное" -->
+    <!-- По тапу на карточку должна открываться страничка котика.
+    Верхняя часть экрана картинка, нижняя часть голосовалка + информация о котике из API.
+    При скролле блока с информацией о котике картинка должна уезжать вверх. -->
+
+    <!-- TODO Пагинация для RecyclerView -->
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,8 +15,6 @@ class DownloadsFragment : Fragment() {
     private lateinit var downloadsViewModel: DownloadsViewModel
     private var _binding: FragmentDownloadsBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(

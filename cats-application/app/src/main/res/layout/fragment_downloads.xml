@@ -9,4 +9,13 @@
         android:layout_marginEnd="8dp" android:textAlignment="center" android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- TODO Кнопка "Добавить картинку" (Из галереи, либо фото с камеры) -->
+
+    <!-- TODO RecyclerView список с карточками котиков (2 картинки в ряду, в т.ч. гифки). -->
+    <!-- По долгому тапу должно открываться меню с кнопкой "Удалить" -->
+    <!-- По тапу должна открываться страничка с информацией о ходе анализа картинки -->
+
+    <!-- TODO Пагинация для RecyclerView -->
+
 </androidx.constraintlayout.widget.ConstraintLayout>
