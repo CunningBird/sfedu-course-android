@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="schedule_title">24sp</dimen>
-    <dimen name="table_height">550dp</dimen>
+    <dimen name="table_height">450dp</dimen>
     <dimen name="table_day_text_size">20sp</dimen>
     <dimen name="table_lesson_text_size">16sp</dimen>
     <dimen name="table_vertical_spacing">6dp</dimen>
@@ -10,7 +10,7 @@
 
     <dimen name="general_text_size">18sp</dimen>
 
-    <dimen name="lessons_layout_height">400dp</dimen>
+    <dimen name="lessons_layout_height">350dp</dimen>
 
     <dimen name="list_item_text_size">14sp</dimen>
 </resources>
