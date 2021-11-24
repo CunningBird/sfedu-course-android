@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.paging.ExperimentalPagingApi
 import androidx.recyclerview.widget.GridLayoutManager
@@ -49,12 +48,11 @@ class CatsFragment : Fragment(R.layout.fragment_cats), CatsImageAdapter.Recycler
     }
 
     override fun onItemClicked(view: View, data: String?) {
-        val toDogDetailsFragment = CatsFragmentDirections.actionCatsFragmentToCardFragment()
-        navigate(toDogDetailsFragment)
-        println("Flex")
-    }
-
-    private fun navigate(destination: NavDirections) = with(findNavController()) {
-        currentDestination?.getAction(destination.actionId)?.let { navigate(destination) }
+        //val action = CatsFragmentDirections.actionCatsFragmentToCardFragment()
+        /*val extras = FragmentNavigatorExtras(
+            view to "Flex"
+        )*/
+        //navigate(action, extras)
+        findNavController().navigate(R.id.action_catsFragment_to_cardFragment)
     }
 }

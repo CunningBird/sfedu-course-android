@@ -3,21 +3,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/cats">
+    app:startDestination="@id/catsFragment">
 
     <fragment
-        android:id="@+id/downloads"
+        android:id="@+id/downloadsFragment"
         android:name="com.cunningbird.cats.view.downloads.DownloadsFragment"
         tools:layout="@layout/fragment_downloads" />
     <fragment
-        android:id="@+id/featured"
+        android:id="@+id/featuredFragment"
         android:name="com.cunningbird.cats.view.featured.FeaturedFragment"
         tools:layout="@layout/fragment_featured" />
-    <fragment
-        android:id="@+id/cats"
-        android:name="com.cunningbird.cats.view.cats.CatsFragment"
-        tools:layout="@layout/fragment_cats" />
 
-    <include app:graph="@navigation/cats_navigation" />
+    <fragment
+        android:id="@+id/catsFragment"
+        android:name="com.cunningbird.cats.view.cats.CatsFragment"
+        android:label="All Cats"
+        tools:layout="@layout/fragment_cats">
+        <action
+            android:id="@+id/action_catsFragment_to_cardFragment"
+            app:destination="@id/cardFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/cardFragment"
+        android:name="com.cunningbird.cats.view.card.CardFragment"
+        android:label="Cat Details"
+        tools:layout="@layout/fragment_card">
+        <action
+            android:id="@+id/action_cardFragment_to_catsFragment"
+            app:destination="@id/catsFragment" />
+    </fragment>
 
 </navigation>
