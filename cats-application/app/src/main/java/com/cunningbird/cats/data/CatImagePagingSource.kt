@@ -2,6 +2,7 @@ package com.cunningbird.cats.data
 
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.PagingSource
+import androidx.paging.PagingState
 import com.cunningbird.cats.data.CatImagesRepository.Companion.DEFAULT_PAGE_INDEX
 import com.cunningbird.cats.model.CatImageModel
 import com.cunningbird.cats.repository.remote.CatApiService
@@ -24,6 +25,10 @@ class CatImagePagingSource(private val catApiService: CatApiService) : PagingSou
         } catch (exception: HttpException) {
             return LoadResult.Error(exception)
         }
+    }
+
+    override fun getRefreshKey(state: PagingState<Int, CatImageModel>): Int? {
+        TODO("Not yet implemented")
     }
 
 }

@@ -7,7 +7,7 @@ import android.widget.ImageView
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import coil.api.load
+import coil.load
 import com.cunningbird.cats.R
 
 class CatsImageAdapter(val callback: RecyclerViewClickListener) : PagingDataAdapter<String, RecyclerView.ViewHolder>(REPO_COMPARATOR) {

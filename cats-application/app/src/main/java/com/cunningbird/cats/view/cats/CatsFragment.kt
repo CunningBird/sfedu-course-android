@@ -49,7 +49,12 @@ class CatsFragment : Fragment(R.layout.fragment_cats), CatsImageAdapter.Recycler
     }
 
     override fun onItemClicked(view: View, data: String?) {
+        val toDogDetailsFragment = CatsFragmentDirections.actionCatsFragmentToCardFragment()
+        navigate(toDogDetailsFragment)
         println("Flex")
-        // TODO Переход на другой фрагмент
+    }
+
+    private fun navigate(destination: NavDirections) = with(findNavController()) {
+        currentDestination?.getAction(destination.actionId)?.let { navigate(destination) }
     }
 }
