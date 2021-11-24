@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.paging.*
 import androidx.paging.rxjava2.observable
 import com.cunningbird.cats.model.CatImageModel
-import com.cunningbird.cats.repository.remote.CatApiService
-import com.cunningbird.cats.repository.remote.RemoteInjector
+import com.cunningbird.cats.repository.CatApiService
+import com.cunningbird.cats.repository.RemoteInjector
 import io.reactivex.Observable
 import kotlinx.coroutines.flow.Flow
 

@@ -2,15 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/cats"
+        android:id="@+id/catsFragment"
         android:icon="@drawable/ic_cats"
         android:title="@string/menu_cats" />
     <item
-        android:id="@+id/featured"
+        android:id="@+id/featuredFragment"
         android:icon="@drawable/ic_featured"
         android:title="@string/menu_featured" />
     <item
-        android:id="@+id/downloads"
+        android:id="@+id/downloadsFragment"
         android:icon="@drawable/ic_downloads"
         android:title="@string/menu_downloads" />
 

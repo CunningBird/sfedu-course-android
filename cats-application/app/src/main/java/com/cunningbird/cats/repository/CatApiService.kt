@@ -1,4 +1,4 @@
-package com.cunningbird.cats.repository.remote
+package com.cunningbird.cats.repository
 
 import com.cunningbird.cats.model.CatImageModel
 import retrofit2.http.GET

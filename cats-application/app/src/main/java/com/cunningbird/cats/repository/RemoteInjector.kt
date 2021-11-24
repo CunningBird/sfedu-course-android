@@ -1,4 +1,4 @@
-package com.cunningbird.cats.repository.remote
+package com.cunningbird.cats.repository
 
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -47,5 +47,4 @@ object RemoteInjector {
             .addInterceptor(okHttpNetworkInterceptor)
             .build()
     }
-
 }

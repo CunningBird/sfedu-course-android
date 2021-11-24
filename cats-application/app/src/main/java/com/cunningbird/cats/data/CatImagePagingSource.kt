@@ -5,7 +5,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.cunningbird.cats.data.CatImagesRepository.Companion.DEFAULT_PAGE_INDEX
 import com.cunningbird.cats.model.CatImageModel
-import com.cunningbird.cats.repository.remote.CatApiService
+import com.cunningbird.cats.repository.CatApiService
 import retrofit2.HttpException
 import java.io.IOException
 
@@ -30,5 +30,4 @@ class CatImagePagingSource(private val catApiService: CatApiService) : PagingSou
     override fun getRefreshKey(state: PagingState<Int, CatImageModel>): Int? {
         TODO("Not yet implemented")
     }
-
 }
