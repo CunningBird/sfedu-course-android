@@ -2,6 +2,7 @@ package com.cunningbird.cats.view.cats
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -9,7 +10,7 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cunningbird.cats.R
-import com.cunningbird.cats.model.CatImageModel
+import com.cunningbird.cats.model.CatImage
 import com.cunningbird.cats.view.cats.adapter.CatsImageAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -27,6 +28,8 @@ class CatsFragment : Fragment(R.layout.fragment_cats), CatsImageAdapter.Recycler
         initMembers()
         setUpViews(view)
         fetchCatImages()
+
+        registerForContextMenu(view)
     }
 
     private fun fetchCatImages() {
@@ -48,8 +51,14 @@ class CatsFragment : Fragment(R.layout.fragment_cats), CatsImageAdapter.Recycler
         rvCatRemote.adapter = adapter
     }
 
-    override fun onItemClicked(view: View, data: CatImageModel) {
+    override fun onItemClicked(view: View, data: CatImage) {
         val navigation = CatsFragmentDirections.actionCatsFragmentToCardFragment(data.id)
         findNavController().navigate(navigation)
+    }
+
+    override fun onItemLongClicked(view: View, data: CatImage): Boolean {
+        val status = catsViewModel.addCatImageAsFavorites(data.id)
+        Toast.makeText(view.context, status, Toast.LENGTH_SHORT).show();
+        return true
     }
 }

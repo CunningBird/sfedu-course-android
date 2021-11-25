@@ -5,16 +5,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:layout_marginTop="20dp"
+        android:id="@+id/upload_from_gallery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="Upload from Gallery"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:layout_marginTop="5dp"
+        android:id="@+id/upload_from_camera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="Upload from Camera"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/upload_from_gallery" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCatUploads"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:padding="16dp"
         app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/upload_from_camera"
         app:spanCount="2"
         tools:listitem="@layout/item_cat_image_view" />
 

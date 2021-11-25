@@ -9,18 +9,19 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.cunningbird.cats.R
-import com.cunningbird.cats.model.CatImageModel
+import com.cunningbird.cats.model.CatImage
 
-class CatsImageAdapter(val callback: RecyclerViewClickListener) : PagingDataAdapter<CatImageModel, RecyclerView.ViewHolder>(REPO_COMPARATOR) {
+class CatsImageAdapter(val callback: RecyclerViewClickListener) : PagingDataAdapter<CatImage, RecyclerView.ViewHolder>(REPO_COMPARATOR) {
 
     interface RecyclerViewClickListener {
-        fun onItemClicked(view: View, data: CatImageModel)
+        fun onItemClicked(view: View, data: CatImage)
+        fun onItemLongClicked(view: View, data: CatImage): Boolean
     }
 
     companion object {
-        private val REPO_COMPARATOR = object : DiffUtil.ItemCallback<CatImageModel>() {
-            override fun areItemsTheSame(oldItem: CatImageModel, newItem: CatImageModel): Boolean = oldItem == newItem
-            override fun areContentsTheSame(oldItem: CatImageModel, newItem: CatImageModel): Boolean = oldItem == newItem
+        private val REPO_COMPARATOR = object : DiffUtil.ItemCallback<CatImage>() {
+            override fun areItemsTheSame(oldItem: CatImage, newItem: CatImage): Boolean = oldItem == newItem
+            override fun areContentsTheSame(oldItem: CatImage, newItem: CatImage): Boolean = oldItem == newItem
         }
     }
 
@@ -36,9 +37,10 @@ class CatsImageAdapter(val callback: RecyclerViewClickListener) : PagingDataAdap
 
         private var ivCatMain: ImageView = view.findViewById(R.id.ivCatMain)
 
-        fun bind(item: CatImageModel) {
+        fun bind(item: CatImage) {
             ivCatMain.load(item.url) { placeholder(R.drawable.cat_placeholder) }
             ivCatMain.setOnClickListener { callback.onItemClicked(itemView, item) }
+            ivCatMain.setOnLongClickListener { callback.onItemLongClicked(itemView, item) }
         }
     }
 }

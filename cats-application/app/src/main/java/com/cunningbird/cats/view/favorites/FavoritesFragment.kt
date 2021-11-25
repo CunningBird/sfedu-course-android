@@ -8,7 +8,7 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cunningbird.cats.R
-import com.cunningbird.cats.model.CatImageModel
+import com.cunningbird.cats.model.CatImage
 import com.cunningbird.cats.view.favorites.adapter.FavoritesImageAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -47,9 +47,13 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites), FavoritesImageA
         rvCatRemote.adapter = adapter
     }
 
-    override fun onItemClicked(view: View, data: CatImageModel) {
+    override fun onItemClicked(view: View, data: CatImage) {
         //val navigation = CatsFragmentDirections.actionCatsFragmentToCardFragment(data.id)
         //findNavController().navigate(navigation)
         println("Favorites Flex")
+    }
+
+    override fun onItemLongClicked(view: View, data: CatImage): Boolean {
+        TODO("Not yet implemented")
     }
 }
