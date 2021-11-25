@@ -9,36 +9,36 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.cunningbird.cats.R
-import com.cunningbird.cats.model.CatImage
+import com.cunningbird.cats.model.CatFavorite
 
-class FavoritesImageAdapter(val callback: RecyclerViewClickListener) : PagingDataAdapter<CatImage, RecyclerView.ViewHolder>(REPO_COMPARATOR) {
+class FavoritesImageAdapter(val callback: RecyclerViewClickListener) : PagingDataAdapter<CatFavorite, RecyclerView.ViewHolder>(REPO_COMPARATOR) {
 
     interface RecyclerViewClickListener {
-        fun onItemClicked(view: View, data: CatImage)
-        fun onItemLongClicked(view: View, data: CatImage): Boolean
+        fun onItemClicked(view: View, data: CatFavorite)
+        fun onItemLongClicked(view: View, data: CatFavorite): Boolean
     }
 
     companion object {
-        private val REPO_COMPARATOR = object : DiffUtil.ItemCallback<CatImage>() {
-            override fun areItemsTheSame(oldItem: CatImage, newItem: CatImage): Boolean = oldItem == newItem
-            override fun areContentsTheSame(oldItem: CatImage, newItem: CatImage): Boolean = oldItem == newItem
+        private val REPO_COMPARATOR = object : DiffUtil.ItemCallback<CatFavorite>() {
+            override fun areItemsTheSame(oldItem: CatFavorite, newItem: CatFavorite): Boolean = oldItem == newItem
+            override fun areContentsTheSame(oldItem: CatFavorite, newItem: CatFavorite): Boolean = oldItem == newItem
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        getItem(position)?.let { (holder as? CatImageViewHolder)?.bind(item = it) }
+        getItem(position)?.let { (holder as? CatFavoriteViewHolder)?.bind(item = it) }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return CatImageViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_cat_image_view, parent, false))
+        return CatFavoriteViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_cat_image_view, parent, false))
     }
 
-    inner class CatImageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class CatFavoriteViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         private var ivCatMain: ImageView = view.findViewById(R.id.ivCatMain)
 
-        fun bind(item: CatImage) {
-            ivCatMain.load(item.url) { placeholder(R.drawable.cat_placeholder) }
+        fun bind(item: CatFavorite) {
+            ivCatMain.load(item.image.url) { placeholder(R.drawable.cat_placeholder) }
             ivCatMain.setOnClickListener { callback.onItemClicked(itemView, item) }
             ivCatMain.setOnLongClickListener { callback.onItemLongClicked(itemView, item) }
         }

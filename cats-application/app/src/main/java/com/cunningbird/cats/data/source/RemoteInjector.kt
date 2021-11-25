@@ -1,4 +1,4 @@
-package com.cunningbird.cats.repository
+package com.cunningbird.cats.data.source
 
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient

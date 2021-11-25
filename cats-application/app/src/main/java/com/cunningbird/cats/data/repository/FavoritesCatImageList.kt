@@ -1,21 +1,21 @@
-package com.cunningbird.cats.data.paging
+package com.cunningbird.cats.data.repository
 
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.cunningbird.cats.data.CatImagesRepository.Companion.DEFAULT_PAGE_INDEX
-import com.cunningbird.cats.model.CatImage
-import com.cunningbird.cats.repository.CatApiService
+import com.cunningbird.cats.data.repository.CatImagesRepository.Companion.DEFAULT_PAGE_INDEX
+import com.cunningbird.cats.data.source.CatApiService
+import com.cunningbird.cats.model.CatFavorite
 import retrofit2.HttpException
 import java.io.IOException
 
 @ExperimentalPagingApi
-class CatUploadImagePagingSource(private val catApiService: CatApiService) : PagingSource<Int, CatImage>() {
+class FavoritesCatImageList(private val catApiService: CatApiService) : PagingSource<Int, CatFavorite>() {
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, CatImage> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, CatFavorite> {
         val page = params.key ?: DEFAULT_PAGE_INDEX
         return try {
-            val response = catApiService.getUploadCatImages(page, params.loadSize)
+            val response = catApiService.getFavorites(page, params.loadSize)
             LoadResult.Page(
                 response, prevKey = if (page == DEFAULT_PAGE_INDEX) null else page - 1,
                 nextKey = if (response.isEmpty()) null else page + 1
@@ -27,7 +27,7 @@ class CatUploadImagePagingSource(private val catApiService: CatApiService) : Pag
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, CatImage>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, CatFavorite>): Int? {
         TODO("Not yet implemented")
     }
 }

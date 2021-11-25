@@ -57,8 +57,14 @@ class CatsFragment : Fragment(R.layout.fragment_cats), CatsImageAdapter.Recycler
     }
 
     override fun onItemLongClicked(view: View, data: CatImage): Boolean {
-        val status = catsViewModel.addCatImageAsFavorites(data.id)
-        Toast.makeText(view.context, status, Toast.LENGTH_SHORT).show();
+        lifecycleScope.launch {
+            val status = catsViewModel.addCatImageAsFavorites(data.id)
+            printResult(view, status)
+        }
         return true
+    }
+
+    private fun printResult(view: View, status: String) {
+        Toast.makeText(view.context, "Featuring status: $status", Toast.LENGTH_SHORT).show();
     }
 }

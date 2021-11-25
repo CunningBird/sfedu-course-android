@@ -1,21 +1,21 @@
-package com.cunningbird.cats.data.paging
+package com.cunningbird.cats.data.repository
 
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.cunningbird.cats.data.CatImagesRepository.Companion.DEFAULT_PAGE_INDEX
+import com.cunningbird.cats.data.repository.CatImagesRepository.Companion.DEFAULT_PAGE_INDEX
 import com.cunningbird.cats.model.CatImage
-import com.cunningbird.cats.repository.CatApiService
+import com.cunningbird.cats.data.source.CatApiService
 import retrofit2.HttpException
 import java.io.IOException
 
 @ExperimentalPagingApi
-class CatImagePagingSource(private val catApiService: CatApiService) : PagingSource<Int, CatImage>() {
+class CatImageList(private val catApiService: CatApiService) : PagingSource<Int, CatImage>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, CatImage> {
         val page = params.key ?: DEFAULT_PAGE_INDEX
         return try {
-            val response = catApiService.getCatImages(page, params.loadSize)
+            val response = catApiService.getPublicImages(page, params.loadSize)
             LoadResult.Page(
                 response, prevKey = if (page == DEFAULT_PAGE_INDEX) null else page - 1,
                 nextKey = if (response.isEmpty()) null else page + 1

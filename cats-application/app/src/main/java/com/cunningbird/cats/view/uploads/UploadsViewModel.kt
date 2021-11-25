@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.cunningbird.cats.data.CatImagesRepository
+import com.cunningbird.cats.data.repository.CatImagesRepository
 import com.cunningbird.cats.model.CatImage
 import kotlinx.coroutines.flow.Flow
 
