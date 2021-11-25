@@ -4,15 +4,15 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.cunningbird.cats.data.repository.CatImagesRepository.Companion.DEFAULT_PAGE_INDEX
-import com.cunningbird.cats.model.CatImage
 import com.cunningbird.cats.data.source.CatApiService
+import com.cunningbird.cats.model.lists.CatListItem
 import retrofit2.HttpException
 import java.io.IOException
 
 @ExperimentalPagingApi
-class CatImageList(private val catApiService: CatApiService) : PagingSource<Int, CatImage>() {
+class CatImageList(private val catApiService: CatApiService) : PagingSource<Int, CatListItem>() {
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, CatImage> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, CatListItem> {
         val page = params.key ?: DEFAULT_PAGE_INDEX
         return try {
             val response = catApiService.getPublicImages(page, params.loadSize)
@@ -27,7 +27,7 @@ class CatImageList(private val catApiService: CatApiService) : PagingSource<Int,
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, CatImage>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, CatListItem>): Int? {
         TODO("Not yet implemented")
     }
 }

@@ -6,10 +6,18 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.cunningbird.cats.data.source.CatApiService
 import com.cunningbird.cats.data.source.RemoteInjector
-import com.cunningbird.cats.model.AddFavorite
-import com.cunningbird.cats.model.CatFavorite
-import com.cunningbird.cats.model.CatImage
+import com.cunningbird.cats.model.lists.CatListItem
+import com.cunningbird.cats.model.details.CatAnalysis
+import com.cunningbird.cats.model.calls.AddFavorite
+import com.cunningbird.cats.model.details.CatFavorite
+import com.cunningbird.cats.model.details.CatImage
+import com.cunningbird.cats.model.calls.RemoveFavorite
+import com.cunningbird.cats.model.calls.RemoveImage
+import com.cunningbird.cats.model.calls.UploadImage
+import com.cunningbird.cats.model.lists.FavoriteCatListItem
+import com.cunningbird.cats.model.lists.UploadedCatListItem
 import kotlinx.coroutines.flow.Flow
+import java.io.File
 
 @ExperimentalPagingApi
 class CatImagesRepository(private val catApiService: CatApiService = RemoteInjector.injectCatApiService()) {
@@ -21,44 +29,56 @@ class CatImagesRepository(private val catApiService: CatApiService = RemoteInjec
         fun getInstance() = CatImagesRepository()
     }
 
-
-    fun letCatImagesFlow(pagingConfig: PagingConfig = getDefaultPageConfig()): Flow<PagingData<CatImage>> {
+    fun getCatImages(pagingConfig: PagingConfig = getDefaultPageConfig()): Flow<PagingData<CatListItem>> {
         return Pager(config = pagingConfig, pagingSourceFactory = { CatImageList(catApiService) }).flow
     }
 
-    fun getCatImage(id: String): CatImage { // TODO Получение конкретного кота
-        return CatImage(id, "url")
-    }
-
-    suspend fun addCatImageAsFavorites(id: String): String { // TODO Добавление кота в избранное
-        val request = AddFavorite(image_id = id)
-        return catApiService.addFavorite(request).message
-    }
-
-
-    fun letCatFeaturedImagesFlow(pagingConfig: PagingConfig = getDefaultPageConfig()): Flow<PagingData<CatFavorite>> {
-        return Pager(config = pagingConfig, pagingSourceFactory = { FavoritesCatImageList(catApiService) }).flow
-    }
-
-    fun getFeaturedCatImage(id: String): CatImage { // TODO Получение конкретного избранного
-        return CatImage(id, "url")
-    }
-
-    // TODO Удаление кота из избранного
-
-
-    fun letCatUploadsImagesFlow(pagingConfig: PagingConfig = getDefaultPageConfig()): Flow<PagingData<CatImage>> {
+    fun getUploadedCatImages(pagingConfig: PagingConfig = getDefaultPageConfig()): Flow<PagingData<UploadedCatListItem>> {
         return Pager(config = pagingConfig, pagingSourceFactory = { UploadedCatImageList(catApiService) }).flow
     }
 
-    fun getUploadedCatImage(id: String): CatImage { // TODO Получение конкретного загруженного
-        return CatImage(id, "url")
+    fun getFavoritesCatImages(pagingConfig: PagingConfig = getFavoritesPageConfig()): Flow<PagingData<FavoriteCatListItem>> {
+        return Pager(config = pagingConfig, pagingSourceFactory = { FavoritesCatImageList(catApiService) }).flow
     }
 
-    // TODO Загрузка изображения
+    suspend fun getCatImage(id: String): CatImage {
+        return catApiService.getPublicImage(id)
+    }
+
+    suspend fun getUploadedCatImage(id: String): CatAnalysis {
+        return catApiService.getUploadCatImage(id)
+    }
+
+    suspend fun getFavoritesCatImage(id: String): CatFavorite {
+        return catApiService.getFavorite(id)
+    }
+
+    suspend fun addUploadedCatImage(file: File, subId: String): String {
+        val request = UploadImage(file = file, sub_id = subId)
+        return catApiService.addUploadCatImage(request).message
+    }
+
+    suspend fun addFavoritesCatImage(id: String, subId: String): String {
+        val request = AddFavorite(image_id = id, sub_id = subId)
+        return catApiService.addFavorite(request).message
+    }
+
+    suspend fun removeUploadedCatImage(id: String): String {
+        val request = RemoveImage(image_id = id)
+        return catApiService.removeUploadCatImage(request).message
+    }
+
+    suspend fun removeFavoritesCatImage(id: String): String {
+        val request = RemoveFavorite(favorite_id = id)
+        return catApiService.removeFavorite(request).message
+    }
 
 
     private fun getDefaultPageConfig(): PagingConfig {
-        return PagingConfig(pageSize = DEFAULT_PAGE_SIZE, enablePlaceholders = true)
+        return PagingConfig(pageSize = 10, enablePlaceholders = true)
+    }
+
+    private fun getFavoritesPageConfig(): PagingConfig {
+        return PagingConfig(pageSize = 4, enablePlaceholders = true)
     }
 }

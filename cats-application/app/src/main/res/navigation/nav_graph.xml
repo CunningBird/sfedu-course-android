@@ -6,32 +6,65 @@
     app:startDestination="@id/catsFragment">
 
     <fragment
-        android:id="@+id/uploadsFragment"
-        android:name="com.cunningbird.cats.view.uploads.UploadsFragment"
-        tools:layout="@layout/fragment_uploads" />
-    <fragment
-        android:id="@+id/favoritesFragment"
-        android:name="com.cunningbird.cats.view.favorites.FavoritesFragment"
-        tools:layout="@layout/fragment_favorites" />
-
-    <fragment
         android:id="@+id/catsFragment"
-        android:name="com.cunningbird.cats.view.cats.CatsFragment"
+        android:name="com.cunningbird.cats.view.lists.cats.CatsFragment"
         android:label="All Cats"
         tools:layout="@layout/fragment_cats">
         <action
             android:id="@+id/action_catsFragment_to_cardFragment"
             app:destination="@id/cardFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.cunningbird.cats.view.lists.favorites.FavoritesFragment"
+        tools:layout="@layout/fragment_favorites">
+        <action
+            android:id="@+id/action_favoritesFragment_to_featuredFragment"
+            app:destination="@id/featuredFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/uploadsFragment"
+        android:name="com.cunningbird.cats.view.lists.uploads.UploadsFragment"
+        tools:layout="@layout/fragment_uploads">
+        <action
+            android:id="@+id/action_uploadsFragment_to_researchFragment"
+            app:destination="@id/researchFragment" />
+    </fragment>
+
+
 
     <fragment
         android:id="@+id/cardFragment"
-        android:name="com.cunningbird.cats.view.card.CardFragment"
+        android:name="com.cunningbird.cats.view.details.card.CardFragment"
         android:label="Cat Details"
         tools:layout="@layout/fragment_card">
         <action
             android:id="@+id/action_cardFragment_to_catsFragment"
             app:destination="@id/catsFragment" />
+        <argument
+            android:name="imageId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/featuredFragment"
+        android:name="com.cunningbird.cats.view.details.featured.FeaturedFragment"
+        android:label="Featured Cat Details"
+        tools:layout="@layout/fragment_featured">
+        <action
+            android:id="@+id/action_featuredFragment_to_favoritesFragment"
+            app:destination="@id/favoritesFragment" />
+        <argument
+            android:name="imageId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/researchFragment"
+        android:name="com.cunningbird.cats.view.details.card.CardFragment"
+        android:label="Cat Details"
+        tools:layout="@layout/fragment_card">
+        <action
+            android:id="@+id/action_researchFragment_to_uploadsFragment"
+            app:destination="@id/uploadsFragment" />
         <argument
             android:name="imageId"
             app:argType="string" />
