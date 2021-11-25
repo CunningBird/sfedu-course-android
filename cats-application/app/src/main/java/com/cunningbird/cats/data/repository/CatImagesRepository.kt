@@ -24,7 +24,7 @@ class CatImagesRepository(private val catApiService: CatApiService = RemoteInjec
 
     companion object {
         const val DEFAULT_PAGE_INDEX = 1
-        const val DEFAULT_PAGE_SIZE = 20
+        const val DEFAULT_PAGE_SIZE = 5
 
         fun getInstance() = CatImagesRepository()
     }
@@ -37,7 +37,7 @@ class CatImagesRepository(private val catApiService: CatApiService = RemoteInjec
         return Pager(config = pagingConfig, pagingSourceFactory = { UploadedCatImageList(catApiService) }).flow
     }
 
-    fun getFavoritesCatImages(pagingConfig: PagingConfig = getFavoritesPageConfig()): Flow<PagingData<FavoriteCatListItem>> {
+    fun getFavoritesCatImages(pagingConfig: PagingConfig = getDefaultPageConfig()): Flow<PagingData<FavoriteCatListItem>> {
         return Pager(config = pagingConfig, pagingSourceFactory = { FavoritesCatImageList(catApiService) }).flow
     }
 
@@ -75,10 +75,6 @@ class CatImagesRepository(private val catApiService: CatApiService = RemoteInjec
 
 
     private fun getDefaultPageConfig(): PagingConfig {
-        return PagingConfig(pageSize = 10, enablePlaceholders = true)
-    }
-
-    private fun getFavoritesPageConfig(): PagingConfig {
-        return PagingConfig(pageSize = 4, enablePlaceholders = true)
+        return PagingConfig(pageSize = DEFAULT_PAGE_SIZE, enablePlaceholders = true)
     }
 }

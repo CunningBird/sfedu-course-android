@@ -2,13 +2,17 @@ package com.cunningbird.cats.view.lists.favorites
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.paging.ExperimentalPagingApi
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cunningbird.cats.R
+import com.cunningbird.cats.model.lists.CatListItem
 import com.cunningbird.cats.model.lists.FavoriteCatListItem
+import com.cunningbird.cats.view.lists.cats.CatsFragmentDirections
 import com.cunningbird.cats.view.lists.favorites.adapter.FavoritesImageAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -48,12 +52,19 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites), FavoritesImageA
     }
 
     override fun onItemClicked(view: View, data: FavoriteCatListItem) {
-        //val navigation = CatsFragmentDirections.actionCatsFragmentToCardFragment(data.id)
-        //findNavController().navigate(navigation)
-        println("Favorites Flex")
+        val navigation = FavoritesFragmentDirections.actionFavoritesFragmentToFeaturedFragment(data.id)
+        findNavController().navigate(navigation)
     }
 
     override fun onItemLongClicked(view: View, data: FavoriteCatListItem): Boolean {
-        TODO("Not yet implemented")
+        lifecycleScope.launch {
+            val status = "Failed"//favoritesViewModel.addCatImageAsFavorites(data.id, "1")
+            printResult(view, status)
+        }
+        return true
+    }
+
+    private fun printResult(view: View, status: String) {
+        Toast.makeText(view.context, "Remove Favorite: $status", Toast.LENGTH_SHORT).show();
     }
 }

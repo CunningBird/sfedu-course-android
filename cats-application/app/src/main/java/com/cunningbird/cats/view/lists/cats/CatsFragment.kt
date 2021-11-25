@@ -65,6 +65,6 @@ class CatsFragment : Fragment(R.layout.fragment_cats), CatsImageAdapter.Recycler
     }
 
     private fun printResult(view: View, status: String) {
-        Toast.makeText(view.context, "Featuring status: $status", Toast.LENGTH_SHORT).show();
+        Toast.makeText(view.context, "Add Favorite: $status", Toast.LENGTH_SHORT).show();
     }
 }
