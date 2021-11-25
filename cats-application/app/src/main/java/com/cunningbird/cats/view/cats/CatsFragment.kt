@@ -48,7 +48,8 @@ class CatsFragment : Fragment(R.layout.fragment_cats), CatsImageAdapter.Recycler
         rvCatRemote.adapter = adapter
     }
 
-    override fun onItemClicked(view: View, data: CatImageModel?) {
-        findNavController().navigate(R.id.action_catsFragment_to_cardFragment)
+    override fun onItemClicked(view: View, data: CatImageModel) {
+        val navigation = CatsFragmentDirections.actionCatsFragmentToCardFragment(data.id)
+        findNavController().navigate(navigation)
     }
 }

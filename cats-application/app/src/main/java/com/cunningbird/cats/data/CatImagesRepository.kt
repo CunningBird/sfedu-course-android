@@ -26,19 +26,28 @@ class CatImagesRepository(private val catApiService: CatApiService = RemoteInjec
         return Pager(config = pagingConfig, pagingSourceFactory = { CatImagePagingSource(catApiService) }).flow
     }
 
-    // TODO Получение конкретной карточки
+    // TODO Получение конкретного кота
+    fun getCatImage(id: String): CatImageModel {
+        return CatImageModel(id, "url") // TODO Get CatImageModel from CatApiService
+    }
 
     fun letCatFeaturedImagesFlow(pagingConfig: PagingConfig = getDefaultPageConfig()): Flow<PagingData<CatImageModel>> {
         return Pager(config = pagingConfig, pagingSourceFactory = { CatFavoritesImagePagingSource(catApiService) }).flow
     }
 
     // TODO Получение конкретного избранного
+    fun getFeaturedCatImage(id: String): CatImageModel {
+        return CatImageModel(id, "url")// TODO Get CatImageModel from CatApiService
+    }
 
     fun letCatUploadsImagesFlow(pagingConfig: PagingConfig = getDefaultPageConfig()): Flow<PagingData<CatImageModel>> {
         return Pager(config = pagingConfig, pagingSourceFactory = { CatUploadImagePagingSource(catApiService) }).flow
     }
 
     // TODO Получение конкретного загруженного
+    fun getUploadedCatImage(id: String): CatImageModel {
+        return CatImageModel(id, "url")// TODO Get CatImageModel from CatApiService
+    }
 
     private fun getDefaultPageConfig(): PagingConfig {
         return PagingConfig(pageSize = DEFAULT_PAGE_SIZE, enablePlaceholders = true)

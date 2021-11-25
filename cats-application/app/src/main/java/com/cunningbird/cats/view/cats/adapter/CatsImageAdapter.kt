@@ -14,7 +14,7 @@ import com.cunningbird.cats.model.CatImageModel
 class CatsImageAdapter(val callback: RecyclerViewClickListener) : PagingDataAdapter<CatImageModel, RecyclerView.ViewHolder>(REPO_COMPARATOR) {
 
     interface RecyclerViewClickListener {
-        fun onItemClicked(view: View, data: CatImageModel?)
+        fun onItemClicked(view: View, data: CatImageModel)
     }
 
     companion object {
@@ -25,7 +25,7 @@ class CatsImageAdapter(val callback: RecyclerViewClickListener) : PagingDataAdap
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as? CatImageViewHolder)?.bind(item = getItem(position))
+        getItem(position)?.let { (holder as? CatImageViewHolder)?.bind(item = it) }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -36,13 +36,9 @@ class CatsImageAdapter(val callback: RecyclerViewClickListener) : PagingDataAdap
 
         private var ivCatMain: ImageView = view.findViewById(R.id.ivCatMain)
 
-        fun bind(item: CatImageModel?) {
-            if (item != null) {
-                ivCatMain.load(item.url) {
-                    placeholder(R.drawable.cat_placeholder)
-                }
-                ivCatMain.setOnClickListener { callback.onItemClicked(itemView, item) }
-            }
+        fun bind(item: CatImageModel) {
+            ivCatMain.load(item.url) { placeholder(R.drawable.cat_placeholder) }
+            ivCatMain.setOnClickListener { callback.onItemClicked(itemView, item) }
         }
     }
 }
