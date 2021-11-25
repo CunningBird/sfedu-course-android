@@ -9,13 +9,26 @@ interface CatApiService {
     @GET("v1/images/search")
     suspend fun getCatImages(@Query("page") page: Int, @Query("limit") size: Int): List<CatImageModel>
 
-    // TODO Получение конкретной карточки
+    //@GET("v1/images/search")
+    //suspend fun getCatImage(@Query("page") page: Int, @Query("limit") size: Int): CatImageModel
 
-    // TODO Получение своих избранных
+    // TODO Добавление в избранные
 
-    // TODO Получение конкретного избранного
 
-    // TODO Получение своих загруженных
+    @GET("v1/favourites")
+    suspend fun getFavoritesCatImages(@Query("page") page: Int, @Query("limit") size: Int): List<CatImageModel>
 
-    // TODO Получение конкретного загруженного
+    //@GET("v1/images/search")
+    //suspend fun getFavoritesCatImage(@Query("page") page: Int, @Query("limit") size: Int): CatImageModel
+
+    // TODO Удаление из избранного
+
+    @GET("v1/images")
+    suspend fun getUploadCatImages(@Query("page") page: Int, @Query("limit") size: Int): List<CatImageModel>
+
+    //@GET("v1/images/search")
+    //suspend fun getUploadCatImage(@Query("page") page: Int, @Query("limit") size: Int): CatImageModel
+
+    // TODO Загрузка изображения
+
 }

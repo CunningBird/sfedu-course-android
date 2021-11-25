@@ -9,6 +9,7 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cunningbird.cats.R
+import com.cunningbird.cats.model.CatImageModel
 import com.cunningbird.cats.view.cats.adapter.CatsImageAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -47,12 +48,7 @@ class CatsFragment : Fragment(R.layout.fragment_cats), CatsImageAdapter.Recycler
         rvCatRemote.adapter = adapter
     }
 
-    override fun onItemClicked(view: View, data: String?) {
-        //val action = CatsFragmentDirections.actionCatsFragmentToCardFragment()
-        /*val extras = FragmentNavigatorExtras(
-            view to "Flex"
-        )*/
-        //navigate(action, extras)
+    override fun onItemClicked(view: View, data: CatImageModel?) {
         findNavController().navigate(R.id.action_catsFragment_to_cardFragment)
     }
 }

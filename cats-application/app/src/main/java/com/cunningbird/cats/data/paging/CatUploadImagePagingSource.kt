@@ -1,4 +1,4 @@
-package com.cunningbird.cats.data
+package com.cunningbird.cats.data.paging
 
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.PagingSource
@@ -10,12 +10,12 @@ import retrofit2.HttpException
 import java.io.IOException
 
 @ExperimentalPagingApi
-class CatImagePagingSource(private val catApiService: CatApiService) : PagingSource<Int, CatImageModel>() {
+class CatUploadImagePagingSource(private val catApiService: CatApiService) : PagingSource<Int, CatImageModel>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, CatImageModel> {
         val page = params.key ?: DEFAULT_PAGE_INDEX
         return try {
-            val response = catApiService.getCatImages(page, params.loadSize)
+            val response = catApiService.getUploadCatImages(page, params.loadSize)
             LoadResult.Page(
                 response, prevKey = if (page == DEFAULT_PAGE_INDEX) null else page - 1,
                 nextKey = if (response.isEmpty()) null else page + 1
@@ -26,16 +26,6 @@ class CatImagePagingSource(private val catApiService: CatApiService) : PagingSou
             return LoadResult.Error(exception)
         }
     }
-
-    // TODO Получение конкретной карточки
-
-    // TODO Получение своих избранных
-
-    // TODO Получение конкретного избранного
-
-    // TODO Получение своих загруженных
-
-    // TODO Получение конкретного загруженного
 
     override fun getRefreshKey(state: PagingState<Int, CatImageModel>): Int? {
         TODO("Not yet implemented")

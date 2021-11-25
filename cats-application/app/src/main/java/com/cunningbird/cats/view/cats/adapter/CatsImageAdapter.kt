@@ -9,20 +9,18 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.cunningbird.cats.R
+import com.cunningbird.cats.model.CatImageModel
 
-class CatsImageAdapter(val callback: RecyclerViewClickListener) : PagingDataAdapter<String, RecyclerView.ViewHolder>(REPO_COMPARATOR) {
+class CatsImageAdapter(val callback: RecyclerViewClickListener) : PagingDataAdapter<CatImageModel, RecyclerView.ViewHolder>(REPO_COMPARATOR) {
 
     interface RecyclerViewClickListener {
-        fun onItemClicked(view: View, data: String?)
+        fun onItemClicked(view: View, data: CatImageModel?)
     }
 
     companion object {
-        private val REPO_COMPARATOR = object : DiffUtil.ItemCallback<String>() {
-            override fun areItemsTheSame(oldItem: String, newItem: String): Boolean =
-                oldItem == newItem
-
-            override fun areContentsTheSame(oldItem: String, newItem: String): Boolean =
-                oldItem == newItem
+        private val REPO_COMPARATOR = object : DiffUtil.ItemCallback<CatImageModel>() {
+            override fun areItemsTheSame(oldItem: CatImageModel, newItem: CatImageModel): Boolean = oldItem == newItem
+            override fun areContentsTheSame(oldItem: CatImageModel, newItem: CatImageModel): Boolean = oldItem == newItem
         }
     }
 
@@ -38,11 +36,13 @@ class CatsImageAdapter(val callback: RecyclerViewClickListener) : PagingDataAdap
 
         private var ivCatMain: ImageView = view.findViewById(R.id.ivCatMain)
 
-        fun bind(item: String?) {
-            ivCatMain.load(item) {
-                placeholder(R.drawable.cat_placeholder)
+        fun bind(item: CatImageModel?) {
+            if (item != null) {
+                ivCatMain.load(item.url) {
+                    placeholder(R.drawable.cat_placeholder)
+                }
+                ivCatMain.setOnClickListener { callback.onItemClicked(itemView, item) }
             }
-            ivCatMain.setOnClickListener { callback.onItemClicked(itemView, item) }
         }
     }
 }
