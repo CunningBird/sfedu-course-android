@@ -23,6 +23,7 @@ interface CatApiService {
 
     // TODO Удаление из избранного
 
+
     @GET("v1/images")
     suspend fun getUploadCatImages(@Query("page") page: Int, @Query("limit") size: Int): List<CatImageModel>
 
@@ -30,5 +31,4 @@ interface CatApiService {
     //suspend fun getUploadCatImage(@Query("page") page: Int, @Query("limit") size: Int): CatImageModel
 
     // TODO Загрузка изображения
-
 }

@@ -43,7 +43,7 @@ class CatsFragment : Fragment(R.layout.fragment_cats), CatsImageAdapter.Recycler
     }
 
     private fun setUpViews(view: View) {
-        rvCatRemote = view.findViewById(R.id.rvCatRemote)
+        rvCatRemote = view.findViewById(R.id.rvCatList)
         rvCatRemote.layoutManager = GridLayoutManager(context, 2)
         rvCatRemote.adapter = adapter
     }

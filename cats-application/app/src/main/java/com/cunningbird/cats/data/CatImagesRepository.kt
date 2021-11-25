@@ -26,8 +26,7 @@ class CatImagesRepository(private val catApiService: CatApiService = RemoteInjec
         return Pager(config = pagingConfig, pagingSourceFactory = { CatImagePagingSource(catApiService) }).flow
     }
 
-    // TODO Получение конкретного кота
-    fun getCatImage(id: String): CatImageModel {
+    fun getCatImage(id: String): CatImageModel { // TODO Получение конкретного кота
         return CatImageModel(id, "url") // TODO Get CatImageModel from CatApiService
     }
 
@@ -35,8 +34,7 @@ class CatImagesRepository(private val catApiService: CatApiService = RemoteInjec
         return Pager(config = pagingConfig, pagingSourceFactory = { CatFavoritesImagePagingSource(catApiService) }).flow
     }
 
-    // TODO Получение конкретного избранного
-    fun getFeaturedCatImage(id: String): CatImageModel {
+    fun getFeaturedCatImage(id: String): CatImageModel { // TODO Получение конкретного избранного
         return CatImageModel(id, "url")// TODO Get CatImageModel from CatApiService
     }
 
@@ -44,8 +42,7 @@ class CatImagesRepository(private val catApiService: CatApiService = RemoteInjec
         return Pager(config = pagingConfig, pagingSourceFactory = { CatUploadImagePagingSource(catApiService) }).flow
     }
 
-    // TODO Получение конкретного загруженного
-    fun getUploadedCatImage(id: String): CatImageModel {
+    fun getUploadedCatImage(id: String): CatImageModel { // TODO Получение конкретного загруженного
         return CatImageModel(id, "url")// TODO Get CatImageModel from CatApiService
     }
 
