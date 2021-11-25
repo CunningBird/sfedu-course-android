@@ -6,13 +6,13 @@
     app:startDestination="@id/catsFragment">
 
     <fragment
-        android:id="@+id/downloadsFragment"
-        android:name="com.cunningbird.cats.view.downloads.DownloadsFragment"
-        tools:layout="@layout/fragment_downloads" />
+        android:id="@+id/uploadsFragment"
+        android:name="com.cunningbird.cats.view.uploads.UploadsFragment"
+        tools:layout="@layout/fragment_uploads" />
     <fragment
-        android:id="@+id/featuredFragment"
-        android:name="com.cunningbird.cats.view.featured.FeaturedFragment"
-        tools:layout="@layout/fragment_featured" />
+        android:id="@+id/favoritesFragment"
+        android:name="com.cunningbird.cats.view.favorites.FavoritesFragment"
+        tools:layout="@layout/fragment_favorites" />
 
     <fragment
         android:id="@+id/catsFragment"

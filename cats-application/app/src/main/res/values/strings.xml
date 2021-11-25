@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Cats Application</string>
     <string name="menu_cats">Cats</string>
-    <string name="menu_featured">Featured</string>
-    <string name="menu_downloads">Downloads</string>
+    <string name="menu_favorites">Favorites</string>
+    <string name="menu_uploads">Uploads</string>
     <string name="label_title_remote">Paging with remote cat api service as data source</string>
     <string name="label_title_room">Paging with room as data source </string>
     <string name="label_title_loader">Paging with footer for showing loader</string>

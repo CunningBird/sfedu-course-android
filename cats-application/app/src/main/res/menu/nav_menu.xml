@@ -6,12 +6,12 @@
         android:icon="@drawable/ic_cats"
         android:title="@string/menu_cats" />
     <item
-        android:id="@+id/featuredFragment"
-        android:icon="@drawable/ic_featured"
-        android:title="@string/menu_featured" />
+        android:id="@+id/favoritesFragment"
+        android:icon="@drawable/ic_favorites"
+        android:title="@string/menu_favorites" />
     <item
-        android:id="@+id/downloadsFragment"
-        android:icon="@drawable/ic_downloads"
-        android:title="@string/menu_downloads" />
+        android:id="@+id/uploadsFragment"
+        android:icon="@drawable/ic_uploads"
+        android:title="@string/menu_uploads" />
 
 </menu>

@@ -27,6 +27,16 @@ class CatImagePagingSource(private val catApiService: CatApiService) : PagingSou
         }
     }
 
+    // TODO Получение конкретной карточки
+
+    // TODO Получение своих избранных
+
+    // TODO Получение конкретного избранного
+
+    // TODO Получение своих загруженных
+
+    // TODO Получение конкретного загруженного
+
     override fun getRefreshKey(state: PagingState<Int, CatImageModel>): Int? {
         TODO("Not yet implemented")
     }

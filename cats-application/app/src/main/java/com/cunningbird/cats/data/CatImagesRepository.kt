@@ -1,12 +1,12 @@
 package com.cunningbird.cats.data
 
-import androidx.lifecycle.LiveData
-import androidx.paging.*
-import androidx.paging.rxjava2.observable
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.cunningbird.cats.model.CatImageModel
 import com.cunningbird.cats.repository.CatApiService
 import com.cunningbird.cats.repository.RemoteInjector
-import io.reactivex.Observable
 import kotlinx.coroutines.flow.Flow
 
 @ExperimentalPagingApi
@@ -26,19 +26,15 @@ class CatImagesRepository(private val catApiService: CatApiService = RemoteInjec
         ).flow
     }
 
-    fun letCatImagesObservable(pagingConfig: PagingConfig = getDefaultPageConfig()): Observable<PagingData<CatImageModel>> {
-        return Pager(
-            config = pagingConfig,
-            pagingSourceFactory = { CatImagePagingSource(catApiService) }
-        ).observable
-    }
+    // TODO Получение конкретной карточки
 
-    fun letCatImagesLiveData(pagingConfig: PagingConfig = getDefaultPageConfig()): LiveData<PagingData<CatImageModel>> {
-        return Pager(
-            config = pagingConfig,
-            pagingSourceFactory = { CatImagePagingSource(catApiService) }
-        ).liveData
-    }
+    // TODO Получение своих избранных
+
+    // TODO Получение конкретного избранного
+
+    // TODO Получение своих загруженных
+
+    // TODO Получение конкретного загруженного
 
     private fun getDefaultPageConfig(): PagingConfig {
         return PagingConfig(pageSize = DEFAULT_PAGE_SIZE, enablePlaceholders = true)
