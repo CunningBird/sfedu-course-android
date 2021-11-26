@@ -8,16 +8,15 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import androidx.paging.ExperimentalPagingApi
 import com.cunningbird.cats.R
-import com.cunningbird.cats.view.details.card.CardFragmentArgs
 import kotlinx.coroutines.launch
 
 @ExperimentalPagingApi
-class ResearchFragment : Fragment(R.layout.fragment_card) {
+class ResearchFragment : Fragment(R.layout.fragment_research) {
 
     private lateinit var catTitle: TextView
     private lateinit var researchViewModel: ResearchViewModel
 
-    private val args: CardFragmentArgs by navArgs()
+    private val args: ResearchFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

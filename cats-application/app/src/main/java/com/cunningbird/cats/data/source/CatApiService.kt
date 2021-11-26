@@ -3,13 +3,13 @@ package com.cunningbird.cats.data.source
 import com.cunningbird.cats.model.calls.AddFavorite
 import com.cunningbird.cats.model.calls.StatusResponse
 import com.cunningbird.cats.model.calls.RemoveImage
-import com.cunningbird.cats.model.calls.UploadImage
 import com.cunningbird.cats.model.details.CatAnalysis
 import com.cunningbird.cats.model.details.CatFavorite
 import com.cunningbird.cats.model.details.CatImage
 import com.cunningbird.cats.model.lists.CatListItem
 import com.cunningbird.cats.model.lists.FavoriteCatListItem
 import com.cunningbird.cats.model.lists.UploadedCatListItem
+import okhttp3.MultipartBody
 import retrofit2.http.*
 
 interface CatApiService {
@@ -28,11 +28,12 @@ interface CatApiService {
     @GET("v1/images/{image_id}")
     suspend fun getPublicImage(@Path("image_id") image_id: String): CatImage
 
-    @POST("v1/images/{image_id}/analysis")
-    suspend fun getUploadCatImage(@Path("image_id") image_id: String): CatAnalysis
+    @GET("v1/images/{image_id}/analysis")
+    suspend fun getUploadCatImage(@Path("image_id") image_id: String): List<CatAnalysis>
 
+    @Multipart
     @POST("v1/favourites")
-    suspend fun addUploadCatImage(@Body data: UploadImage): StatusResponse
+    suspend fun addUploadCatImage(@Part file: MultipartBody.Part): StatusResponse
 
     @DELETE("v1/favourites")
     suspend fun removeUploadCatImage(@Body data: RemoveImage): StatusResponse

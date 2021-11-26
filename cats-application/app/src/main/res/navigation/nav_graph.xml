@@ -59,9 +59,9 @@
     </fragment>
     <fragment
         android:id="@+id/researchFragment"
-        android:name="com.cunningbird.cats.view.details.card.CardFragment"
+        android:name="com.cunningbird.cats.view.details.research.ResearchFragment"
         android:label="Cat Details"
-        tools:layout="@layout/fragment_card">
+        tools:layout="@layout/fragment_research">
         <action
             android:id="@+id/action_researchFragment_to_uploadsFragment"
             app:destination="@id/uploadsFragment" />

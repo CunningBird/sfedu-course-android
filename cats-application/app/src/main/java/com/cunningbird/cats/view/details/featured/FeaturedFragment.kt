@@ -10,17 +10,16 @@ import androidx.navigation.fragment.navArgs
 import androidx.paging.ExperimentalPagingApi
 import coil.load
 import com.cunningbird.cats.R
-import com.cunningbird.cats.view.details.card.CardFragmentArgs
 import kotlinx.coroutines.launch
 
 @ExperimentalPagingApi
-class FeaturedFragment : Fragment(R.layout.fragment_card) {
+class FeaturedFragment : Fragment(R.layout.fragment_featured) {
 
     private lateinit var catImage: ImageView
     private lateinit var catId: TextView
     private lateinit var catsViewModel: FeaturedViewModel
 
-    private val args: CardFragmentArgs by navArgs()
+    private val args: FeaturedFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

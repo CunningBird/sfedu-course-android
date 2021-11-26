@@ -3,6 +3,7 @@ package com.cunningbird.cats.view.lists.uploads
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
@@ -23,10 +24,8 @@ import com.cunningbird.cats.view.lists.uploads.adapter.UploadsImageAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
-import java.io.ByteArrayOutputStream
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
+import java.io.*
+import java.net.URI
 
 
 @ExperimentalPagingApi
@@ -44,6 +43,7 @@ class UploadsFragment : Fragment(R.layout.fragment_uploads), UploadsImageAdapter
 
             val data: Intent? = result.data
             val thumbnail: Bitmap = data?.extras?.get("data") as Bitmap
+
             val bytes = ByteArrayOutputStream()
             thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes)
             val destination = File(Environment.getExternalStorageDirectory(), "temp.jpg")
@@ -56,7 +56,7 @@ class UploadsFragment : Fragment(R.layout.fragment_uploads), UploadsImageAdapter
                 e.printStackTrace()
             }
 
-            addUploaded(destination)
+            addUploaded(destination) // TODO File not found
         }
     }
 
@@ -64,11 +64,11 @@ class UploadsFragment : Fragment(R.layout.fragment_uploads), UploadsImageAdapter
         if (result.resultCode == Activity.RESULT_OK) {
 
             val data: Intent? = result.data
-            val uri: String = data?.extras?.get("data") as String // TODO Get uri from data
+            val uri: Uri? = data?.data
 
-            val destination = File(uri)
-
-            addUploaded(destination)
+            if (uri != null) {
+                addUploaded(File(uri.path)) // TODO File not found
+            }
         }
     }
 
@@ -112,7 +112,7 @@ class UploadsFragment : Fragment(R.layout.fragment_uploads), UploadsImageAdapter
     }
 
     override fun onItemClicked(view: View, data: UploadedCatListItem) {
-        val navigation = FavoritesFragmentDirections.actionFavoritesFragmentToFeaturedFragment(data.id)
+        val navigation = UploadsFragmentDirections.actionUploadsFragmentToResearchFragment(data.id)
         findNavController().navigate(navigation)
     }
 

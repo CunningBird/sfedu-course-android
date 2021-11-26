@@ -8,7 +8,6 @@ import com.cunningbird.cats.data.source.CatApiService
 import com.cunningbird.cats.data.source.RemoteInjector
 import com.cunningbird.cats.model.calls.AddFavorite
 import com.cunningbird.cats.model.calls.RemoveImage
-import com.cunningbird.cats.model.calls.UploadImage
 import com.cunningbird.cats.model.details.CatAnalysis
 import com.cunningbird.cats.model.details.CatFavorite
 import com.cunningbird.cats.model.details.CatImage
@@ -16,7 +15,12 @@ import com.cunningbird.cats.model.lists.CatListItem
 import com.cunningbird.cats.model.lists.FavoriteCatListItem
 import com.cunningbird.cats.model.lists.UploadedCatListItem
 import kotlinx.coroutines.flow.Flow
+import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import java.io.File
+
 
 @ExperimentalPagingApi
 class CatImagesRepository(private val catApiService: CatApiService = RemoteInjector.injectCatApiService()) {
@@ -32,7 +36,7 @@ class CatImagesRepository(private val catApiService: CatApiService = RemoteInjec
         return Pager(config = pagingConfig, pagingSourceFactory = { CatImageList(sort, catApiService) }).flow
     }
 
-    fun getUploadedCatImages(pagingConfig: PagingConfig = getDefaultPageConfig()): Flow<PagingData<UploadedCatListItem>> {
+    fun getUploadedCatImages(pagingConfig: PagingConfig = getUploadsPageConfig()): Flow<PagingData<UploadedCatListItem>> {
         return Pager(config = pagingConfig, pagingSourceFactory = { UploadedCatImageList(catApiService) }).flow
     }
 
@@ -49,7 +53,7 @@ class CatImagesRepository(private val catApiService: CatApiService = RemoteInjec
     }
 
     suspend fun getUploadedCatImage(id: String): CatAnalysis {
-        return catApiService.getUploadCatImage(id)
+        return catApiService.getUploadCatImage(id)[0]
     }
 
     suspend fun addFavoritesCatImage(id: String, subId: String): String {
@@ -62,8 +66,10 @@ class CatImagesRepository(private val catApiService: CatApiService = RemoteInjec
     }
 
     suspend fun addUploadedCatImage(file: File, subId: String): String {
-        val request = UploadImage(file = file, sub_id = subId)
-        return catApiService.addUploadCatImage(request).message
+        val requestFile = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), file)
+        val body: MultipartBody.Part = MultipartBody.Part.createFormData("file", file.name, requestFile)
+
+        return catApiService.addUploadCatImage(body).message
     }
 
     suspend fun removeUploadedCatImage(id: String): String {
@@ -73,5 +79,9 @@ class CatImagesRepository(private val catApiService: CatApiService = RemoteInjec
 
     private fun getDefaultPageConfig(): PagingConfig {
         return PagingConfig(pageSize = DEFAULT_PAGE_SIZE, enablePlaceholders = true)
+    }
+
+    private fun getUploadsPageConfig(): PagingConfig {
+        return PagingConfig(pageSize = 0, enablePlaceholders = true)
     }
 }
