@@ -16,7 +16,7 @@ class CatsViewModel(private val repository: CatImagesRepository = CatImagesRepos
         return repository.getCatImages().cachedIn(viewModelScope)
     }
 
-    suspend fun addCatImageAsFavorites(id: String, subId: String): String {
+    suspend fun addFeatured(id: String, subId: String): String {
         return repository.addFavoritesCatImage(id, subId)
     }
 }

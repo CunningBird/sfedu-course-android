@@ -1,6 +1,5 @@
 package com.cunningbird.cats.model.calls
 
-import com.squareup.moshi.JsonClass
+import com.squareup.moshi.Json
 
-@JsonClass(generateAdapter = true)
-data class RemoveImage(val image_id: String)
+data class RemoveImage(@field:Json(name = "image_id") val image_id: String)

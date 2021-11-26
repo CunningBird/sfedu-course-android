@@ -58,7 +58,7 @@ class CatsFragment : Fragment(R.layout.fragment_cats), CatsImageAdapter.Recycler
 
     override fun onItemLongClicked(view: View, data: CatListItem): Boolean {
         lifecycleScope.launch {
-            val status = catsViewModel.addCatImageAsFavorites(data.id, "1")
+            val status = catsViewModel.addFeatured(data.id, "1")
             printResult(view, status)
         }
         return true

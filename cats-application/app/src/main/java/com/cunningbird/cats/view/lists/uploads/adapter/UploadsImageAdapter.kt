@@ -9,12 +9,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.cunningbird.cats.R
+import com.cunningbird.cats.model.lists.FavoriteCatListItem
 import com.cunningbird.cats.model.lists.UploadedCatListItem
 
 class UploadsImageAdapter(val callback: RecyclerViewClickListener) : PagingDataAdapter<UploadedCatListItem, RecyclerView.ViewHolder>(REPO_COMPARATOR) {
 
     interface RecyclerViewClickListener {
         fun onItemClicked(view: View, data: UploadedCatListItem)
+        fun onItemLongClicked(view: View, data: UploadedCatListItem): Boolean
     }
 
     companion object {
@@ -39,6 +41,7 @@ class UploadsImageAdapter(val callback: RecyclerViewClickListener) : PagingDataA
         fun bind(item: UploadedCatListItem) {
             ivCatMain.load(item.url) { placeholder(R.drawable.cat_placeholder) }
             ivCatMain.setOnClickListener { callback.onItemClicked(itemView, item) }
+            ivCatMain.setOnLongClickListener { callback.onItemLongClicked(itemView, item) }
         }
     }
 }

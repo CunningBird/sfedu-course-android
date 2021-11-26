@@ -28,6 +28,6 @@ class CatImageList(private val catApiService: CatApiService) : PagingSource<Int,
     }
 
     override fun getRefreshKey(state: PagingState<Int, CatListItem>): Int {
-        return 0
+        return 0 // TODO Configure this
     }
 }

@@ -44,17 +44,12 @@ class CatImagesRepository(private val catApiService: CatApiService = RemoteInjec
         return catApiService.getPublicImage(id)
     }
 
-    suspend fun getUploadedCatImage(id: String): CatAnalysis {
-        return catApiService.getUploadCatImage(id)
-    }
-
     suspend fun getFavoritesCatImage(id: String): CatFavorite {
         return catApiService.getFavorite(id)
     }
 
-    suspend fun addUploadedCatImage(file: File, subId: String): String {
-        val request = UploadImage(file = file, sub_id = subId)
-        return catApiService.addUploadCatImage(request).message
+    suspend fun getUploadedCatImage(id: String): CatAnalysis {
+        return catApiService.getUploadCatImage(id)
     }
 
     suspend fun addFavoritesCatImage(id: String, subId: String): String {
@@ -62,15 +57,19 @@ class CatImagesRepository(private val catApiService: CatApiService = RemoteInjec
         return catApiService.addFavorite(request).message
     }
 
-    suspend fun removeUploadedCatImage(id: String): String {
-        val request = RemoveImage(image_id = id)
-        return catApiService.removeUploadCatImage(request).message
-    }
-
     suspend fun removeFavoritesCatImage(id: String): String {
         return catApiService.removeFavorite(id).message
     }
 
+    suspend fun addUploadedCatImage(file: File, subId: String): String {
+        val request = UploadImage(file = file, sub_id = subId)
+        return catApiService.addUploadCatImage(request).message
+    }
+
+    suspend fun removeUploadedCatImage(id: String): String {
+        val request = RemoveImage(image_id = id)
+        return catApiService.removeUploadCatImage(request).message
+    }
 
     private fun getDefaultPageConfig(): PagingConfig {
         return PagingConfig(pageSize = DEFAULT_PAGE_SIZE, enablePlaceholders = true)

@@ -1,7 +1,6 @@
 package com.cunningbird.cats.model.calls
 
-import com.squareup.moshi.JsonClass
+import com.squareup.moshi.Json
 import java.io.File
 
-@JsonClass(generateAdapter = true)
-data class UploadImage(val file: File, val sub_id: String)
+data class UploadImage(@field:Json(name = "file") val file: File, @field:Json(name = "sub_id") val sub_id: String)
