@@ -1,6 +1,9 @@
 package com.cunningbird.cats.view.lists.cats
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -25,16 +28,44 @@ class CatsFragment : Fragment(R.layout.fragment_cats), CatsImageAdapter.Recycler
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
+
         initMembers()
         setUpViews(view)
-        fetchCatImages()
+        fetchCatImages("ASC")
 
         registerForContextMenu(view)
     }
 
-    private fun fetchCatImages() {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.sort_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.sort_asc -> {
+                adapter.refresh()
+                fetchCatImages("ASC")
+                true
+            }
+            R.id.sort_desc -> {
+                adapter.refresh()
+                fetchCatImages("DESC")
+                true
+            }
+            R.id.sort_random -> {
+                adapter.refresh()
+                fetchCatImages("RANDOM")
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun fetchCatImages(sort: String) {
         lifecycleScope.launch {
-            catsViewModel.fetchCatImages().distinctUntilChanged().collectLatest {
+            catsViewModel.fetchCatImages(sort).distinctUntilChanged().collectLatest {
                 adapter.submitData(it)
             }
         }

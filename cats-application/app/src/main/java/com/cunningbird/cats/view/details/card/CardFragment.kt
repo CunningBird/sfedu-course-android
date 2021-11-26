@@ -35,9 +35,9 @@ class CardFragment : Fragment(R.layout.fragment_card) {
         lifecycleScope.launch {
             val catImageModel = catsViewModel.getCatInfo(args.imageId)
             catImage.load(catImageModel.url) { placeholder(R.drawable.cat_placeholder) }
-            catId.text = "Cat ID: " + catImageModel.id
-            catWidth.text = "Image width: " + catImageModel.width
-            catHeight.text = "Image height: " + catImageModel.height
+            catId.text = "ID: " + catImageModel.id
+            catWidth.text = "Width: " + catImageModel.width
+            catHeight.text = "Height: " + catImageModel.height
         }
     }
 

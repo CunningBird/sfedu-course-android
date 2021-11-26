@@ -33,7 +33,7 @@ class FeaturedFragment : Fragment(R.layout.fragment_card) {
         lifecycleScope.launch {
             val catImageModel = catsViewModel.getFavoriteInfo(args.imageId)
             catImage.load(catImageModel.image.url) { placeholder(R.drawable.cat_placeholder) }
-            catId.text = "Cat ID: " + catImageModel.image.id
+            catId.text = "ID: " + catImageModel.image.id
         }
     }
 

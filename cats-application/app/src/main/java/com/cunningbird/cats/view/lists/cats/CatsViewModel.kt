@@ -12,8 +12,8 @@ import kotlinx.coroutines.flow.Flow
 @ExperimentalPagingApi
 class CatsViewModel(private val repository: CatImagesRepository = CatImagesRepository.getInstance()) : ViewModel() {
 
-    fun fetchCatImages(): Flow<PagingData<CatListItem>> {
-        return repository.getCatImages().cachedIn(viewModelScope)
+    fun fetchCatImages(sort: String): Flow<PagingData<CatListItem>> {
+        return repository.getCatImages(sort).cachedIn(viewModelScope)
     }
 
     suspend fun addFeatured(id: String, subId: String): String {

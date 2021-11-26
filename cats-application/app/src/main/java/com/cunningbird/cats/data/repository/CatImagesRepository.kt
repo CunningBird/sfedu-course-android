@@ -28,8 +28,8 @@ class CatImagesRepository(private val catApiService: CatApiService = RemoteInjec
         fun getInstance() = CatImagesRepository()
     }
 
-    fun getCatImages(pagingConfig: PagingConfig = getDefaultPageConfig()): Flow<PagingData<CatListItem>> {
-        return Pager(config = pagingConfig, pagingSourceFactory = { CatImageList(catApiService) }).flow
+    fun getCatImages(sort: String, pagingConfig: PagingConfig = getDefaultPageConfig()): Flow<PagingData<CatListItem>> {
+        return Pager(config = pagingConfig, pagingSourceFactory = { CatImageList(sort, catApiService) }).flow
     }
 
     fun getUploadedCatImages(pagingConfig: PagingConfig = getDefaultPageConfig()): Flow<PagingData<UploadedCatListItem>> {

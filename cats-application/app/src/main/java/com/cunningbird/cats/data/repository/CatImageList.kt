@@ -10,12 +10,12 @@ import retrofit2.HttpException
 import java.io.IOException
 
 @ExperimentalPagingApi
-class CatImageList(private val catApiService: CatApiService) : PagingSource<Int, CatListItem>() {
+class CatImageList(private var sort: String, private val catApiService: CatApiService) : PagingSource<Int, CatListItem>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, CatListItem> {
         val page = params.key ?: DEFAULT_PAGE_INDEX
         return try {
-            val response = catApiService.getPublicImages(page, params.loadSize)
+            val response = catApiService.getPublicImages(page, params.loadSize, sort)
             LoadResult.Page(
                 response, prevKey = if (page == DEFAULT_PAGE_INDEX) null else page - 1,
                 nextKey = if (response.isEmpty()) null else page + 1
