@@ -5,7 +5,6 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.cunningbird.cats.data.repository.CatImagesRepository.Companion.DEFAULT_PAGE_INDEX
 import com.cunningbird.cats.data.source.CatApiService
-import com.cunningbird.cats.model.lists.CatListItem
 import com.cunningbird.cats.model.lists.UploadedCatListItem
 import retrofit2.HttpException
 import java.io.IOException
@@ -28,7 +27,7 @@ class UploadedCatImageList(private val catApiService: CatApiService) : PagingSou
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, UploadedCatListItem>): Int? {
-        TODO("Not yet implemented")
+    override fun getRefreshKey(state: PagingState<Int, UploadedCatListItem>): Int {
+        return 0
     }
 }

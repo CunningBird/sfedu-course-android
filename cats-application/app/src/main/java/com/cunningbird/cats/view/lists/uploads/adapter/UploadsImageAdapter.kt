@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.cunningbird.cats.R
-import com.cunningbird.cats.model.lists.CatListItem
 import com.cunningbird.cats.model.lists.UploadedCatListItem
 
 class UploadsImageAdapter(val callback: RecyclerViewClickListener) : PagingDataAdapter<UploadedCatListItem, RecyclerView.ViewHolder>(REPO_COMPARATOR) {

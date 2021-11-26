@@ -10,9 +10,7 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cunningbird.cats.R
-import com.cunningbird.cats.model.lists.CatListItem
 import com.cunningbird.cats.model.lists.FavoriteCatListItem
-import com.cunningbird.cats.view.lists.cats.CatsFragmentDirections
 import com.cunningbird.cats.view.lists.favorites.adapter.FavoritesImageAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -58,8 +56,9 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites), FavoritesImageA
 
     override fun onItemLongClicked(view: View, data: FavoriteCatListItem): Boolean {
         lifecycleScope.launch {
-            val status = "Failed"//favoritesViewModel.addCatImageAsFavorites(data.id, "1")
+            val status = favoritesViewModel.removeCatImage(data.id)
             printResult(view, status)
+            adapter.refresh()
         }
         return true
     }

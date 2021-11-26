@@ -8,7 +8,6 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cunningbird.cats.R
-import com.cunningbird.cats.model.lists.CatListItem
 import com.cunningbird.cats.model.lists.UploadedCatListItem
 import com.cunningbird.cats.view.lists.uploads.adapter.UploadsImageAdapter
 import kotlinx.coroutines.flow.collectLatest

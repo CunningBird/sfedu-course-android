@@ -6,14 +6,13 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.cunningbird.cats.data.source.CatApiService
 import com.cunningbird.cats.data.source.RemoteInjector
-import com.cunningbird.cats.model.lists.CatListItem
-import com.cunningbird.cats.model.details.CatAnalysis
 import com.cunningbird.cats.model.calls.AddFavorite
-import com.cunningbird.cats.model.details.CatFavorite
-import com.cunningbird.cats.model.details.CatImage
-import com.cunningbird.cats.model.calls.RemoveFavorite
 import com.cunningbird.cats.model.calls.RemoveImage
 import com.cunningbird.cats.model.calls.UploadImage
+import com.cunningbird.cats.model.details.CatAnalysis
+import com.cunningbird.cats.model.details.CatFavorite
+import com.cunningbird.cats.model.details.CatImage
+import com.cunningbird.cats.model.lists.CatListItem
 import com.cunningbird.cats.model.lists.FavoriteCatListItem
 import com.cunningbird.cats.model.lists.UploadedCatListItem
 import kotlinx.coroutines.flow.Flow
@@ -69,8 +68,7 @@ class CatImagesRepository(private val catApiService: CatApiService = RemoteInjec
     }
 
     suspend fun removeFavoritesCatImage(id: String): String {
-        val request = RemoveFavorite(favorite_id = id)
-        return catApiService.removeFavorite(request).message
+        return catApiService.removeFavorite(id).message
     }
 
 

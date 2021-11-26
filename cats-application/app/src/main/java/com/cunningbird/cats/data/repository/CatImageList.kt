@@ -27,7 +27,7 @@ class CatImageList(private val catApiService: CatApiService) : PagingSource<Int,
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, CatListItem>): Int? {
-        TODO("Not yet implemented")
+    override fun getRefreshKey(state: PagingState<Int, CatListItem>): Int {
+        return 0
     }
 }

@@ -1,12 +1,14 @@
 package com.cunningbird.cats.data.source
 
-import com.cunningbird.cats.data.repository.UploadedCatImageList
-import com.cunningbird.cats.model.calls.*
+import com.cunningbird.cats.model.calls.AddFavorite
+import com.cunningbird.cats.model.calls.PostFavoriteResponse
+import com.cunningbird.cats.model.calls.RemoveImage
+import com.cunningbird.cats.model.calls.UploadImage
 import com.cunningbird.cats.model.details.CatAnalysis
 import com.cunningbird.cats.model.details.CatFavorite
 import com.cunningbird.cats.model.details.CatImage
-import com.cunningbird.cats.model.lists.FavoriteCatListItem
 import com.cunningbird.cats.model.lists.CatListItem
+import com.cunningbird.cats.model.lists.FavoriteCatListItem
 import com.cunningbird.cats.model.lists.UploadedCatListItem
 import retrofit2.http.*
 
@@ -41,6 +43,6 @@ interface CatApiService {
     @POST("v1/favourites")
     suspend fun addFavorite(@Body data: AddFavorite): PostFavoriteResponse
 
-    @DELETE("v1/favourites")
-    suspend fun removeFavorite(@Body data: RemoveFavorite): PostFavoriteResponse
+    @DELETE("v1/favourites/{favorite_id}")
+    suspend fun removeFavorite(@Path("favorite_id") favorite_id: String): PostFavoriteResponse
 }

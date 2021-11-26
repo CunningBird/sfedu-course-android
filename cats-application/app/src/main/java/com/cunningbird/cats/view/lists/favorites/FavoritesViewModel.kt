@@ -15,4 +15,8 @@ class FavoritesViewModel(private val repository: CatImagesRepository = CatImages
     fun fetchCatImages(): Flow<PagingData<FavoriteCatListItem>> {
         return repository.getFavoritesCatImages().cachedIn(viewModelScope)
     }
+
+    suspend fun removeCatImage(id: String): String {
+        return repository.removeFavoritesCatImage(id)
+    }
 }
