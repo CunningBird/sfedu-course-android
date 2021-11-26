@@ -11,4 +11,8 @@ class CardViewModel(private val repository: CatImagesRepository = CatImagesRepos
     suspend fun getCatInfo(id: String): CatImage {
         return repository.getCatImage(id)
     }
+
+    suspend fun vote(id: String, value: Int): String {
+        return repository.vote(id, value)
+    }
 }

@@ -3,6 +3,7 @@ package com.cunningbird.cats.data.source
 import com.cunningbird.cats.model.calls.AddFavorite
 import com.cunningbird.cats.model.calls.StatusResponse
 import com.cunningbird.cats.model.calls.RemoveImage
+import com.cunningbird.cats.model.calls.Vote
 import com.cunningbird.cats.model.details.CatAnalysis
 import com.cunningbird.cats.model.details.CatFavorite
 import com.cunningbird.cats.model.details.CatImage
@@ -46,4 +47,8 @@ interface CatApiService {
 
     @DELETE("v1/favourites/{favorite_id}")
     suspend fun removeFavorite(@Path("favorite_id") favorite_id: String): StatusResponse
+
+
+    @POST("v1/votes")
+    suspend fun vote(@Body data: Vote): StatusResponse
 }

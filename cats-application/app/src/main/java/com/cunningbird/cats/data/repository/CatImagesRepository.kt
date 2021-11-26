@@ -8,6 +8,7 @@ import com.cunningbird.cats.data.source.CatApiService
 import com.cunningbird.cats.data.source.RemoteInjector
 import com.cunningbird.cats.model.calls.AddFavorite
 import com.cunningbird.cats.model.calls.RemoveImage
+import com.cunningbird.cats.model.calls.Vote
 import com.cunningbird.cats.model.details.CatAnalysis
 import com.cunningbird.cats.model.details.CatFavorite
 import com.cunningbird.cats.model.details.CatImage
@@ -79,6 +80,11 @@ class CatImagesRepository(private val catApiService: CatApiService = RemoteInjec
 
     private fun getDefaultPageConfig(): PagingConfig {
         return PagingConfig(pageSize = DEFAULT_PAGE_SIZE, enablePlaceholders = true)
+    }
+
+    suspend fun vote(id: String, value: Int): String {
+        val request = Vote(image_id = id, value = value)
+        return catApiService.vote(request).message
     }
 
     private fun getUploadsPageConfig(): PagingConfig {
