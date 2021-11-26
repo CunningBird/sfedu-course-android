@@ -28,6 +28,6 @@ class FavoritesCatImageList(private val catApiService: CatApiService) : PagingSo
     }
 
     override fun getRefreshKey(state: PagingState<Int, FavoriteCatListItem>): Int {
-        return 0 // TODO Configure this
+        return 0
     }
 }
